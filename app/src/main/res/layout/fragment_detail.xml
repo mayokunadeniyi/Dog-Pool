@@ -3,10 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.DetailFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/dogImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/dogName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            style="@style/Title"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/dogImage"
+            android:text="DogName" />
+
+        <TextView
+            android:id="@+id/dogPurpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dog's Purpose"
+            android:layout_below="@id/dogName"
+            android:padding="4dp"
+            android:layout_centerHorizontal="true"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/dogTemperament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dog's Temperament"
+            android:layout_below="@id/dogPurpose"
+            android:padding="4dp"
+            android:layout_centerHorizontal="true"
+            style="@style/Text"/>
+
+        <TextView
+            android:id="@+id/dogLifeSpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dog's LifeSpan"
+            android:layout_below="@id/dogTemperament"
+            android:padding="4dp"
+            android:layout_centerHorizontal="true"
+            style="@style/Text"/>
+    </RelativeLayout>
 </layout>
