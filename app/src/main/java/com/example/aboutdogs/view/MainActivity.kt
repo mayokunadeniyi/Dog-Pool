@@ -1,7 +1,9 @@
-package com.example.aboutdogs
+package com.example.aboutdogs.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.aboutdogs.R
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
