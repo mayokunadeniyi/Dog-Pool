@@ -4,46 +4,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="1dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:focusable="true">
 
-        <LinearLayout
+        <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="125dp">
 
             <ImageView
                 android:id="@+id/dog_image"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:padding="4dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@mipmap/ic_dog_icon" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:padding="4dp"
+                android:layout_toEndOf="@id/dog_image"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/dog_name"
+                    style="@style/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Title"
                     tools:text="DogName" />
 
                 <TextView
                     android:id="@+id/dog_lifespan"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"
                     tools:text="9 Years" />
             </LinearLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </layout>
