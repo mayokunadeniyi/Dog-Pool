@@ -1,20 +1,16 @@
 package com.example.aboutdogs.view
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.aboutdogs.R
+import com.example.aboutdogs.view.adapter.DogListAdapter
 import com.example.aboutdogs.viewmodel.ListViewModel
-import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
@@ -23,7 +19,8 @@ import kotlinx.android.synthetic.main.fragment_list.*
 class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
-    private val dogListAdapter = DogListAdapter(arrayListOf())
+    private val dogListAdapter =
+        DogListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

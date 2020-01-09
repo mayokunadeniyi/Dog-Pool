@@ -28,10 +28,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.setUpDogs()
-
-        observeViewModel()
+//        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
+//        viewModel.setUpDogs()
+//
+//        observeViewModel()
     }
 
     private fun observeViewModel() {
