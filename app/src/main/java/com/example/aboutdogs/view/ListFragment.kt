@@ -1,18 +1,29 @@
 package com.example.aboutdogs.view
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.aboutdogs.R
+import com.example.aboutdogs.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class ListFragment : Fragment() {
+
+    private lateinit var viewModel: ListViewModel
+    private val dogListAdapter = DogListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +35,37 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
 
+        viewModel.refresh()
+        dogs_recyclerview.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = dogListAdapter
+        }
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.dogs.observe(this, Observer {dogs ->
+            dogs?.let {
+                dogs_recyclerview.visibility = View.VISIBLE
+                dogListAdapter.updateDogList(dogs)
+            }
+        })
+
+        viewModel.dogError.observe(this, Observer {
+            it?.let {
+                list_error.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        })
+
+        viewModel.loading.observe(this, Observer {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            if (it){
+                dogs_recyclerview.visibility = View.GONE
+                list_error.visibility = View.GONE
+            }
+        })
     }
 
 }
