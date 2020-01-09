@@ -43,6 +43,17 @@ class ListFragment : Fragment() {
             adapter = dogListAdapter
         }
         observeViewModel()
+        setupRefreshLayout()
+    }
+
+    private fun setupRefreshLayout() {
+        refresh_layout.setOnRefreshListener {
+            dogs_recyclerview.visibility = View.GONE
+            list_error.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+            viewModel.refresh()
+            refresh_layout.isRefreshing = false
+        }
     }
 
     private fun observeViewModel() {

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.example.aboutdogs.R
@@ -30,12 +31,17 @@ class DetailFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
         viewModel.setUpDogs()
 
-        val dogList = viewModel.dogs.value
-        val position = args.stuff
-        var currentDog = dogList?.get(position)
+        observeViewModel()
+    }
 
-        dogName.text = currentDog?.dogBreed
-        dogLifeSpan.text = currentDog?.lifeSpan
+    private fun observeViewModel() {
+        viewModel.dogs.observe(this, Observer { dogList ->
+            val position = args.stuff
+            dogList[position].let {
+                dogName.text = it.dogBreed
+                dogLifeSpan.text = it.lifeSpan
+            }
+        })
     }
 
 }
