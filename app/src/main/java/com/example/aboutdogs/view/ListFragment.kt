@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aboutdogs.R
 import com.example.aboutdogs.view.adapter.DogListAdapter
-import com.example.aboutdogs.viewmodel.ListViewModel
+import com.example.aboutdogs.viewmodel.listfragment.ListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
@@ -48,7 +48,7 @@ class ListFragment : Fragment() {
             dogs_recyclerview.visibility = View.GONE
             list_error.visibility = View.GONE
             progressBar.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.refreshBypassCache()
             refresh_layout.isRefreshing = false
         }
     }

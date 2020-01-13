@@ -1,20 +1,21 @@
-package com.example.aboutdogs.viewmodel
+package com.example.aboutdogs.viewmodel.listfragment
 
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.aboutdogs.database.DogDao
 import com.example.aboutdogs.database.DogDatabase
 import com.example.aboutdogs.model.DogBreed
 import com.example.aboutdogs.network.DogApiService
 import com.example.aboutdogs.utils.SharedPreferenceHelper
+import com.example.aboutdogs.viewmodel.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by Mayokun Adeniyi on 08/01/2020.
@@ -49,11 +50,17 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
+    fun refreshBypassCache(){
+        fetchFromRemote()
+    }
+
     private fun fetchFromDatabase() {
         _loading.value = true
         launch {
-            val dogs = dao.getAllDogs()
-            dogsRetrieved(dogs)
+            withContext(Dispatchers.IO){
+                val dogs = dao.getAllDogs()
+                dogsRetrieved(dogs)
+            }
             Toast.makeText(getApplication(), "Data retrieved from database", Toast.LENGTH_SHORT)
                 .show()
         }
@@ -87,21 +94,23 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun dogsRetrieved(dogList: List<DogBreed>) {
-        _dogs.value = dogList
-        _dogError.value = false
-        _loading.value = false
+        _dogs.postValue(dogList)
+        _dogError.postValue(false)
+        _loading.postValue(false)
     }
 
     private fun storeDogsLocally(dogList: List<DogBreed>) {
         launch {
-            dao.deleteAllDogs()
-            val result = dao.insertAll(*dogList.toTypedArray())
-            var i = 0
-            while (i < dogList.size) {
-                dogList[i].uuid = result[i].toInt()
-                ++i
+            withContext(Dispatchers.IO){
+                dao.deleteAllDogs()
+                val result = dao.insertAll(*dogList.toTypedArray())
+                var i = 0
+                while (i < dogList.size) {
+                    dogList[i].uuid = result[i].toInt()
+                    ++i
+                }
+                dogsRetrieved(dogList)
             }
-            dogsRetrieved(dogList)
         }
         prefHelper.saveUpdateTime(System.nanoTime())
     }
