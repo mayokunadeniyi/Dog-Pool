@@ -8,6 +8,7 @@ import com.example.aboutdogs.database.DogDao
 import com.example.aboutdogs.database.DogDatabase
 import com.example.aboutdogs.model.DogBreed
 import com.example.aboutdogs.network.DogApiService
+import com.example.aboutdogs.utils.SharedPreferenceHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -18,6 +19,8 @@ import kotlinx.coroutines.launch
  * Created by Mayokun Adeniyi on 08/01/2020.
  */
 class ListViewModel(application: Application): BaseViewModel(application) {
+
+    private var prefHelper = SharedPreferenceHelper()
 
     private val disposable = CompositeDisposable()
     private val dogService = DogApiService()
@@ -76,6 +79,7 @@ class ListViewModel(application: Application): BaseViewModel(application) {
             }
             dogsRetrieved(dogList)
         }
+        prefHelper.saveUpdateTime(System.nanoTime())
     }
 
     override fun onCleared() {
