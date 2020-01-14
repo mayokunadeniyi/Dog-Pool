@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.aboutdogs.R
+import com.example.aboutdogs.databinding.FragmentDetailBinding
 import com.example.aboutdogs.utils.getProgressDrawable
 import com.example.aboutdogs.utils.loadImage
 import com.example.aboutdogs.viewmodel.detailfragment.DetailViewModel
@@ -19,13 +20,14 @@ import kotlinx.android.synthetic.main.fragment_detail.*
  * A simple [Fragment] subclass.
  */
 class DetailFragment : Fragment() {
-
+    lateinit var binding: FragmentDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentDetailBinding.inflate(inflater)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,11 +42,9 @@ class DetailFragment : Fragment() {
 
     private fun observeViewModel(viewModel: DetailViewModel) {
         viewModel.dogBreed.observe(this, Observer {
-            dogImage.loadImage(it.imageUrl, getProgressDrawable(requireContext()))
-            dogName.text = it.dogBreed
-            dogPurpose.text = it.bredFor
-            dogTemperament.text = it.temperament
-            dogLifeSpan.text = it.lifeSpan
+            it?.let {
+                binding.dog = it
+            }
         })
     }
 

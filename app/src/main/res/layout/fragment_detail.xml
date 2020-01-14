@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="dog"
+            type="com.example.aboutdogs.model.DogBreed" />
+    </data>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +19,8 @@
             android:layout_height="wrap_content"
             android:minHeight="200dp"
             android:scaleType="fitCenter"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            imageUrl="@{dog.imageUrl}"/>
 
         <TextView
             android:id="@+id/dogName"
@@ -24,13 +30,15 @@
             style="@style/Title"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/dogImage"
-            android:text="DogName" />
+            tools:text="DogName"
+            android:text="@{dog.dogBreed}"/>
 
         <TextView
             android:id="@+id/dogPurpose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dog's Purpose"
+            tools:text="Dog's Purpose"
+            android:text="@{dog.bredFor}"
             android:layout_below="@id/dogName"
             android:padding="4dp"
             android:layout_centerHorizontal="true"
@@ -40,7 +48,8 @@
             android:id="@+id/dogTemperament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dog's Temperament"
+            tools:text="Dog's Temperament"
+            android:text="@{dog.temperament}"
             android:layout_below="@id/dogPurpose"
             android:padding="4dp"
             android:layout_centerHorizontal="true"
@@ -50,7 +59,8 @@
             android:id="@+id/dogLifeSpan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dog's LifeSpan"
+            tools:text="Dog's LifeSpan"
+            android:text="@{dog.lifeSpan}"
             android:layout_below="@id/dogTemperament"
             android:padding="4dp"
             android:layout_centerHorizontal="true"

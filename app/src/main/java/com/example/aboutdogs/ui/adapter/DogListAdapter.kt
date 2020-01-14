@@ -40,12 +40,10 @@ class DogListAdapter(val dogList: ArrayList<DogBreed>) :
     }
 
     override fun onDogClicked(v: View) {
-
         val dogUid = v.dogUid.text.toString().toInt()
         val action =
             ListFragmentDirections.actionListFragmentToDetailFragment().setDogUid(dogUid)
         Navigation.findNavController(v).navigate(action)
-
     }
 
     class DogViewHolder(var view: ItemDogBinding) : RecyclerView.ViewHolder(view.root)
