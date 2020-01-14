@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.aboutdogs.database.DogDatabase
 import com.example.aboutdogs.model.DogBreed
 import com.example.aboutdogs.network.DogApiService
+import com.example.aboutdogs.utils.NotificationsHelper
 import com.example.aboutdogs.utils.SharedPreferenceHelper
 import com.example.aboutdogs.viewmodel.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -80,6 +81,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                             "Data retrieved from remote",
                             Toast.LENGTH_SHORT
                         ).show()
+                        NotificationsHelper(getApplication()).createNotification()
 
                     }
 
