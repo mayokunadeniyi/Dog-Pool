@@ -1,59 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dog"
+            type="com.example.aboutdogs.model.DogBreed" />
+
+        <variable
+            name="listener"
+            type="com.example.aboutdogs.ui.adapter.DogClickListener" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="1dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:focusable="true">
+        <TextView
+            android:id="@+id/dogUid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(dog.uuid)}"
+            android:visibility="gone" />
 
-        <RelativeLayout
-            android:orientation="horizontal"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="125dp">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="1dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
 
-            <ImageView
-                android:id="@+id/dog_image"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:padding="4dp"
-                tools:src="@tools:sample/avatars"/>
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toEndOf="@id/dog_image"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:padding="4dp">
+                android:layout_height="125dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/dog_name"
-                    style="@style/Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="DogName" />
+                <ImageView
+                    android:id="@+id/dog_image"
+                    imageUrl="@{dog.imageUrl}"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    tools:src="@tools:sample/avatars" />
 
-                <TextView
-                    android:id="@+id/dog_lifespan"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="9 Years" />
-            </LinearLayout>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/dog_image"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/dog_name"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{dog.dogBreed}"
+                        tools:text="DogName" />
+
+                    <TextView
+                        android:id="@+id/dog_lifespan"
+                        style="@style/Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{dog.lifeSpan}"
+                        tools:text="9 Years" />
+                </LinearLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </layout>
