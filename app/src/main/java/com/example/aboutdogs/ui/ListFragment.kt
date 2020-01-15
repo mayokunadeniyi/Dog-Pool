@@ -1,12 +1,11 @@
 package com.example.aboutdogs.ui
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aboutdogs.R
 import com.example.aboutdogs.ui.adapter.DogListAdapter
@@ -26,6 +25,7 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
@@ -74,6 +74,21 @@ class ListFragment : Fragment() {
                 list_error.visibility = View.GONE
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.dogs_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.settings_id -> {
+                val action = ListFragmentDirections.actionListFragmentToSettingsFragment()
+                this.findNavController().navigate(action)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

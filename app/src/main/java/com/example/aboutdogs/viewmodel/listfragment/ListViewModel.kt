@@ -17,6 +17,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.NumberFormatException
 
 /**
  * Created by Mayokun Adeniyi on 08/01/2020.
@@ -24,7 +25,7 @@ import kotlinx.coroutines.withContext
 class ListViewModel(application: Application) : BaseViewModel(application) {
 
     private var prefHelper = SharedPreferenceHelper.getInstance(application)
-    private val refreshTime = 5 * 60 * 1000 * 1000 * 1000L
+    private var refreshTime = 5 * 60 * 1000 * 1000 * 1000L
 
     private val disposable = CompositeDisposable()
     private val dogService = DogApiService()
@@ -43,11 +44,22 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         get() = _loading
 
     fun refresh() {
+        checkCacheDuration()
         val updateTime = prefHelper.getUpdateTime()
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
             fetchFromDatabase()
         } else {
             fetchFromRemote()
+        }
+    }
+
+    private fun checkCacheDuration() {
+        val cachePreference = prefHelper.getCacheDuration()
+        try {
+            val cacheDurationInt = cachePreference?.toInt() ?: 5 * 60
+            refreshTime = cacheDurationInt.times(1000 * 1000 * 1000L)
+        }catch (e: NumberFormatException){
+            e.printStackTrace()
         }
     }
 
