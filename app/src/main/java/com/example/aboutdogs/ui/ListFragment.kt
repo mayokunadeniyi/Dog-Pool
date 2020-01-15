@@ -32,6 +32,7 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
 
         viewModel.refresh()
@@ -78,7 +79,7 @@ class ListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.dogs_menu,menu)
+        inflater.inflate(R.menu.list_fragment_menu,menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

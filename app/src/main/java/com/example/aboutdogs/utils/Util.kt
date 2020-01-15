@@ -11,6 +11,7 @@ import com.example.aboutdogs.R
 /**
  * Created by Mayokun Adeniyi on 09/01/2020.
  */
+const val PERMISSION_SEND_SMS = 234
 
 fun getProgressDrawable(context: Context): CircularProgressDrawable{
     return CircularProgressDrawable(context).apply {

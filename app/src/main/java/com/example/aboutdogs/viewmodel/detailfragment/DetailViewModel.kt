@@ -26,17 +26,30 @@ class DetailViewModel(
     val dogBreed: LiveData<DogBreed>
         get() = _dogBreed
 
+    private val _smsStarted = MutableLiveData<Boolean>()
+    val smsStarted: LiveData<Boolean>
+        get() = _smsStarted
+
 
     init {
         setDogBreed()
+        _smsStarted.value = false
     }
 
     private fun setDogBreed() {
         launch {
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 Timber.i("The main thread ${Looper.myLooper() == Looper.getMainLooper()}")
                 _dogBreed.postValue(dao.getDog(dogUid))
             }
         }
+    }
+
+    fun startSms(){
+        _smsStarted.value = true
+    }
+
+    fun doneSendingSms(){
+        _smsStarted.value = false
     }
 }

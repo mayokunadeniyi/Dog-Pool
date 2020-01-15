@@ -10,4 +10,6 @@
     <!--    Preference Header-->
     <string name="cache_group">Data cache</string>
     <string name="settings">Settings</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="share">Share</string>
 </resources>

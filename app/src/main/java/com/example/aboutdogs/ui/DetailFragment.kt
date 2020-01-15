@@ -3,12 +3,11 @@ package com.example.aboutdogs.ui
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
@@ -28,10 +27,12 @@ import kotlinx.android.synthetic.main.fragment_detail.*
  */
 class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
+    lateinit var viewModel: DetailViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         binding = FragmentDetailBinding.inflate(inflater)
         // Inflate the layout for this fragment
         return binding.root
@@ -41,9 +42,10 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val application = requireNotNull(this.activity).application
         val args by navArgs<DetailFragmentArgs>()
-        val viewModel by viewModels<DetailViewModel>{
-            DetailViewModelFactory(args.dogUid, application)
-        }
+
+        viewModel = ViewModelProviders.of(this,DetailViewModelFactory(args.dogUid,application))
+            .get(DetailViewModel::class.java)
+
         observeViewModel(viewModel)
     }
 
@@ -52,6 +54,12 @@ class DetailFragment : Fragment() {
             it?.let {
                 binding.dog = it
                 setBackgroundColor(it.imageUrl)
+            }
+        })
+
+        viewModel.smsStarted.observe(this, Observer {
+            if (it){
+                (activity as MainActivity).checkSmsPermission()
             }
         })
     }
@@ -73,6 +81,24 @@ class DetailFragment : Fragment() {
                 }
 
             })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.detail_fragment_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_send -> {
+                viewModel.startSms()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun onPermissionResult(permissionGranted: Boolean){
+
     }
 
 
