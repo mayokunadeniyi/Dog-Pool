@@ -4,7 +4,7 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.aboutdogs.database.DogDatabase
+import com.example.aboutdogs.data.DogDatabase
 import com.example.aboutdogs.model.DogBreed
 import com.example.aboutdogs.network.DogApiService
 import com.example.aboutdogs.utils.NotificationsHelper

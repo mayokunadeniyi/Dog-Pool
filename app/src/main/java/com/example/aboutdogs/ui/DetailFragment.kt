@@ -134,6 +134,7 @@ class DetailFragment : Fragment() {
                             if (!dialogBinding.smsDestination.text.isNullOrEmpty()){
                                 smsInfo.to = dialogBinding.smsDestination.text.toString()
                                 sendSMS(smsInfo)
+                                viewModel.doneSendingSms()
                             }
                         }
                         .setNegativeButton("Cancel"){dialog, which ->  }
