@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aboutdogs">
+    package="com.example.dogpool">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <application
-        android:name=".AboutDogsApplication"
+        android:name="com.example.dogpool.DogPoolApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_dog_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_dog_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.example.dogpool.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">About Dogs</string>
+    <string name="app_name">Dog Pool</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_text">An error occurred when loading data</string>
@@ -12,5 +12,6 @@
     <string name="settings">Settings</string>
     <string name="send_sms">Send SMS</string>
     <string name="share">Share</string>
-    <string name="sms_layout_to_text">To:</string>
+    <string name="sms_layout_to_text">Phone No:</string>
+    <string name="cancel">Cancel</string>
 </resources>

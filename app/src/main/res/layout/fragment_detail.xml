@@ -6,10 +6,10 @@
     <data>
         <variable
             name="dog"
-            type="com.example.aboutdogs.model.DogBreed" />
+            type="com.example.dogpool.model.DogBreed" />
         <variable
             name="dogPalette"
-            type="com.example.aboutdogs.model.DogPalette" />
+            type="com.example.dogpool.model.DogPalette" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

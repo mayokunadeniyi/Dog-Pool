@@ -8,11 +8,11 @@
 
         <variable
             name="dog"
-            type="com.example.aboutdogs.model.DogBreed" />
+            type="com.example.dogpool.model.DogBreed" />
 
         <variable
             name="listener"
-            type="com.example.aboutdogs.ui.adapter.DogClickListener" />
+            type="com.example.dogpool.ui.adapter.DogClickListener" />
     </data>
 
     <LinearLayout

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.aboutdogs.ui.ListFragment"
+        android:name="com.example.dogpool.ui.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/fragment_list">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.aboutdogs.ui.DetailFragment"
+        android:name="com.example.dogpool.ui.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
         <action
@@ -32,6 +32,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.aboutdogs.ui.SettingsFragment"
+        android:name="com.example.dogpool.ui.SettingsFragment"
         android:label="SettingsFragment" />
 </navigation>
