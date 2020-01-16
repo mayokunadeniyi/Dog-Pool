@@ -5,14 +5,14 @@
     <data>
         <variable
             name="smsInfo"
-            type="com.example.aboutdogs.model.SmsInfo" />
+            type="com.example.dogpool.model.SmsInfo" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_vertical">
         
         <EditText
             android:id="@+id/smsDestination"
@@ -28,12 +28,34 @@
             android:inputType="textMultiLine"
             android:gravity="center_horizontal"
             android:text="@{smsInfo.text}"/>
+
         <ImageView
+            imageUrl="@{smsInfo.imageUrl}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            imageUrl="@{smsInfo.imageUrl}"
-            android:scaleType="center"/>
+            android:scaleType="center" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/send_sms_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/fab_margin"
+                android:text="@string/send_sms" />
+
+            <Button
+                android:id="@+id/cancel_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/fab_margin"
+                android:text="@string/cancel" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>
