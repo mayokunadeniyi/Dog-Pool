@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical">
-        
+
         <EditText
             android:id="@+id/smsDestination"
             android:layout_width="match_parent"
@@ -29,11 +30,17 @@
             android:gravity="center_horizontal"
             android:text="@{smsInfo.text}"/>
 
-        <ImageView
-            imageUrl="@{smsInfo.imageUrl}"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="center" />
+            android:layout_margin="5dp"
+            app:cardCornerRadius="@dimen/cardview_corner">
+            <ImageView
+                imageUrl="@{smsInfo.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="center" />
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="match_parent"

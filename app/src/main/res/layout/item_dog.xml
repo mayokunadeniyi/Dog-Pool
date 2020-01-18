@@ -41,6 +41,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
+                android:background="#F3F2F2"
                 android:orientation="horizontal">
 
                 <ImageView

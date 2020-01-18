@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:minHeight="200dp"
             android:scaleType="fitCenter"
+            android:layout_margin="5dp"
             tools:srcCompat="@tools:sample/avatars"
             imageUrl="@{dog.imageUrl}"/>
 
